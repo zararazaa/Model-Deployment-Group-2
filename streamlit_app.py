@@ -2,15 +2,12 @@ import streamlit as st
 import pandas as pd
 import pickle
 
-@st.cache_resource
+
 def load_model(filename):
-    try:
         with open(filename, 'rb') as file:
             model = pickle.load(file)
         return model
-    except Exception as e:
-        st.error(f"Error loading model: {e}")
-        return None
+
 
 def predict_with_model(model, user_input_df):
     prediction = model.predict(user_input_df)
